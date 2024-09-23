@@ -102,7 +102,7 @@ public class ContaService {
                     .toList();
 
             return contaRepository.saveAll(contas);
-        } catch (IOException e) {
+        } catch (IllegalStateException | IOException e) {
             throw new BadRequestException(ERRO_AO_IMPORTAR_CSV, e);
         }
     }
