@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Repository
 public interface ContaRepository extends JpaRepository<ContaEntity, Long> {
 
-    @Query("SELECT COALESCE(SUM(c.valor), 0) FROM ContaEntity c WHERE c.dataPagamento BETWEEN :dataInicio AND :dataFim AND c.situacao = 'PAGO'")
+    @Query("SELECT SUM(c.valor) FROM ContaEntity c WHERE c.dataPagamento BETWEEN :dataInicio AND :dataFim AND c.situacao = 'PAGO'")
     BigDecimal obterValorTotalPagoPorPeriodo(LocalDate dataInicio, LocalDate dataFim);
 
     @Query("SELECT c FROM ContaEntity c WHERE " +

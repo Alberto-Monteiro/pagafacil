@@ -80,7 +80,7 @@ public class ContaService {
     public Map<String, BigDecimal> obterValorTotalPagoPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
         BigDecimal resultado = contaRepository.obterValorTotalPagoPorPeriodo(dataInicio, dataFim);
 
-        return Map.of("valorTotalPago", resultado);
+        return Map.of("valorTotalPago", resultado != null ? resultado : BigDecimal.ZERO);
     }
 
     public List<ContaEntity> importarContas(MultipartFile fileCsv) {
